@@ -3,11 +3,11 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: First of all, find the naked twins from the unitlist. If there is a naked twins in the unit, then remove 2 digits of naked twins value from the unit excpeting the 2 naked twins boxes.
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: Simply we can consider this problem as an addition of 2 diagonal units. If we add those 2 diagonal units into new diagonal_units, then add diagonal_units into unitlist, then our Constraint Propagation (Eliminate Strategy, Naked Twins Strategy and Only Choice Strategy) will be applied to diagonal_units same as row_units, column_units and square_units.
 
 ### Install
 
