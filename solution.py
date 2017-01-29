@@ -25,11 +25,16 @@ def naked_twins(values):
     # Eliminate the naked twins as possibilities for their peers
 
     for unit in unitlist:
+        # Find the naked twins.
         nakedTwins = getNakedTwins(unit, values)
+        # If the length of naked twins list is 2, then there is naked twins.
+        # Otherwise, there is no naked twins in this unit.
         if(len(nakedTwins) == 2):
+            # Create new targetUnit having the box list excepting 2 naked twins boxes.
             targetUnit = unit.copy()
             targetUnit.remove(nakedTwins[0])
             targetUnit.remove(nakedTwins[1])
+            # Remove 2 digits which are in naked twins box from target boxes.
             for box in targetUnit:
                 for digit in values[nakedTwins[0]]:
                     value = values[box].replace(digit,'')
@@ -52,11 +57,13 @@ def getNakedTwins(unit, values):
     nakedTwins = []
 
     for box in unit:
+        # Create temporary unit excepting the box-itself.
         tempUnit = unit.copy()
         tempUnit.remove(box)
         for targetBox in tempUnit:
             firstBoxValue = values[box]
             secondBoxValue = values[targetBox]
+            # Compare 2 boxes value and length with 2
             if(firstBoxValue == secondBoxValue and len(firstBoxValue) == 2):
                 # We found the naked twins!
                 nakedTwins.append(box)
