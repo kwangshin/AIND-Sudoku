@@ -111,19 +111,25 @@ def display(values):
     print
 
 def eliminate(values):
+    # Find all solved values, i.e., only one possible value in box.
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
     for box in solved_values:
+        # If the box is solved, then the digit in box is not able to appear in peers of the box.
         digit = values[box]
         for peer in peers[box]:
+            # Remove the digit from the value of peers.
             value = values[peer].replace(digit,'')
             values = assign_value(values, peer, value)
     return values
 
 def only_choice(values):
-    new_values = values.copy()  # note: do not modify original values
+    new_values = values.copy()
     for unit in unitlist:
+        # Check all digits one by one from the unit.
         for digit in '123456789':
             dplaces = [box for box in unit if digit in values[box]]
+            # If the digit is appeared only once in the unit, 
+            #   then the box is considered as solved with the digit.
             if len(dplaces) == 1:
                 new_values[dplaces[0]] = digit
     return new_values
